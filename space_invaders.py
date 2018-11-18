@@ -6,7 +6,7 @@ curses.curs_set(False)
 screen_h, screen_w = screen.getmaxyx()
 window = curses.newwin(screen_h, screen_w, 0, 0)
 window.keypad(True)
-window.timeout(500)
+window.timeout(100)
 curses.noecho()
 invaders = [(2*i + 1, screen_w/8 + 2*j) for i in range(0, 4) for j in range(6*screen_w/16)]
 blockades = [(screen_h - (10 - i), screen_w/8 + j) for i in range(4) for j in range(6*screen_w/8) if j%5 != 0]
@@ -41,7 +41,7 @@ while True:
         travel_right = not travel_right
     if travel_forward:
         travel_forward = False
-    if side == 40:
+    if side == 150:
         side = 0
         travel_forward = True
     
@@ -85,17 +85,17 @@ while True:
 
     key = window.getch()
 
-    if key == curses.KEY_RIGHT and defender[1] != screen_w - 7:
+    if key == curses.KEY_RIGHT and defender[1] != 7*screen_w/8 + 2:
         window.addch(defender[0], defender[1], ' ')
         defender = (defender[0], defender[1] + 1)
-    elif key == curses.KEY_LEFT and defender[1] != 7:
+    elif key == curses.KEY_LEFT and defender[1] != screen_w/8 - 3:
         window.addch(defender[0], defender[1], ' ')
         defender = (defender[0], defender[1] - 1)
     elif key == curses.KEY_UP:
         if delay == 0:
             defender_fire.append((defender[0] - 1, defender[1]))
         delay += 1
-        if delay == 4:
+        if delay == 3:
             delay = 0
     if random.randint(0, 5) == 0:
         invader_fire.append(random.choice(invaders))
