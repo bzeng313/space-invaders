@@ -24,6 +24,7 @@ side = 0
 
 score = 0
 window.addstr(screen_h - 1, 0, 'Score: %d'%score)
+delay = 0
 while True:
     moved_invaders = []
     for y, x in invaders:
@@ -91,8 +92,11 @@ while True:
         window.addch(defender[0], defender[1], ' ')
         defender = (defender[0], defender[1] - 1)
     elif key == curses.KEY_UP:
-        defender_fire.append((defender[0] - 1, defender[1]))
-
+        if delay == 0:
+            defender_fire.append((defender[0] - 1, defender[1]))
+        delay += 1
+        if delay == 4:
+            delay = 0
     if random.randint(0, 5) == 0:
         invader_fire.append(random.choice(invaders))
     window.addch(defender[0], defender[1], 'Y')
