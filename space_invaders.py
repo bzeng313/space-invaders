@@ -72,7 +72,7 @@ while True:
     for y, x in invader_fire:
         if y != screen_h - 1 and (y, x) not in invaders:
             window.addch(y, x, 'V')
-        if y - 1 >= 0:
+        if y - 1 >= 0 and (y - 1, x) not in invaders:
             window.addch(y - 1, x, ' ')
 
         if (y, x) in blockades:
