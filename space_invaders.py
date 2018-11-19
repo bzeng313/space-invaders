@@ -53,7 +53,7 @@ while True:
     for y, x in defender_fire:
         if y != 0:
             window.addch(y, x, '^')
-        if (y + 1, x) != defender:
+        if (y + 1, x) != defender and (y + 1, x) not in invaders:
             window.addch(y + 1, x, ' ')
         if (y, x) in blockades:
             window.addch(y, x, ' ')
