@@ -92,11 +92,7 @@ while True:
         window.addch(defender[0], defender[1], ' ')
         defender = (defender[0], defender[1] - 1)
     elif key == curses.KEY_UP:
-        if delay == 0:
-            defender_fire.append((defender[0] - 1, defender[1]))
-            delay += 1
-        if delay == 3:
-            delay = 0
+        defender_fire.append((defender[0] - 1, defender[1]))
     if random.randint(0, 5) == 0:
         invader_fire.append(random.choice(invaders))
     window.addch(defender[0], defender[1], 'Y')
